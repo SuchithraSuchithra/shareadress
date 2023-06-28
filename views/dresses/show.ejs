@@ -1,0 +1,14 @@
+<h4>dress details</h4>
+
+<h5>Brand : <%= dress.title %></h5>
+<h5>Price : <%= dress.price %></h5>
+<h5>Posted By: <%= dress.posted_by %></h5>
+<h5>Posted On: <%= dress.posted_at %></h5>
+<img src="<%= dress.photo_url%>" alt="" />
+
+<form action="/dishes/<%= dress.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE" />
+  <button>delete</button>
+</form>
+
+<a href="/dresses/<%= dress.id %>/edit">Modify</a>

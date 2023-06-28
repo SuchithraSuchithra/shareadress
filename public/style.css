@@ -1,0 +1,49 @@
+html {
+  height: 100%;
+}
+
+* {
+  border: 1px solid black;
+}
+
+img {
+  width: 200px;
+}
+body {
+  box-sizing: border-box;
+  border: solid #5b6dcd 1px;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 100%;
+  min-height: 90%;
+  background-color: mistyrose;
+}
+
+a,
+u {
+  text-decoration: none;
+}
+
+.list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding: 0px;
+}
+.list-item {
+  border: 1px solid red;
+  list-style-type: none;
+  padding: 5px;
+}
+
+.post-dress-form {
+  display: flex;
+  flex-direction: column;
+  margin: 3px;
+}
+
+.post-dress-form-item {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
