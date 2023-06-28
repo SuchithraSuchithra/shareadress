@@ -14,18 +14,18 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/new', (req, res) => {
+  res.render('dresses/new')
+})
+
 router.get('/:id', (req, res) => {
   const dressId = req.params.id
   const sql = `SELECT * FROM dress WHERE id=$1`
   db.query(sql, [dressId], (err, dbRes) => {
     console.log(err, dbRes.rows)
     // res.send('item retrieval')
-    res.render('dresses/show', { dress: dbRes.rows })
+    res.render('dresses/show', { dress: dbRes.rows[0] })
   })
-})
-
-router.get('/new', (req, res) => {
-  res.render('dresses/new')
 })
 
 router.post('/', (req, res) => {
