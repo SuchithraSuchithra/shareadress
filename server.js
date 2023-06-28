@@ -5,9 +5,11 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const dressRouter = require('./routes/dress')
+const sessionRouter = require('./routes/session')
 const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
-
+const session = require('express-session')
+const setUser = require('./middlewares/set_user')
 // App setting
 app.set('view engine', 'ejs')
 
@@ -32,11 +34,23 @@ app.use(
     }
   })
 )
+// session
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+  })
+)
+
+app.use(setUser)
 
 // Routers
 app.get('/', (req, res) => {
   res.render('home')
 })
+
+app.use('/', sessionRouter)
 app.use('/dresses', dressRouter)
 
 // Server request Listener

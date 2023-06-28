@@ -6,8 +6,9 @@ const db = require('../../db')
 
 // Get all dresses posted by the logged in user
 router.get('/', (req, res) => {
-  const sql = `SELECT * FROM dress;`
-  db.query(sql, (err, dbRes) => {
+  const userId = req.session.userId
+  const sql = `SELECT * FROM dress WHERE posted_by=$1;`
+  db.query(sql, [userId], (err, dbRes) => {
     console.log(err, dbRes.rows[0])
     res.render('dresses/index', { dresses: dbRes.rows })
   })
@@ -30,11 +31,12 @@ router.get('/:id', (req, res) => {
 
 // Create a post
 router.post('/', (req, res) => {
+  const userId = req.session.userId
   const title = req.body.title
   const price = req.body.price
   const photUrl = req.body.imageurl
-  const sql = `INSERT INTO dress (title, price, photo_url, posted_by) VALUES ($1, $2, $3, 1) RETURNING id;`
-  db.query(sql, [title, price, photUrl], (err, dbRes) => {
+  const sql = `INSERT INTO dress (title, price, photo_url, posted_by) VALUES ($1, $2, $3, $4) RETURNING id;`
+  db.query(sql, [title, price, photUrl, userId], (err, dbRes) => {
     console.log(err)
     const dressId = dbRes.rows[0].id
     res.redirect(`/dresses/${dressId}`)
