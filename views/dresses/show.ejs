@@ -6,7 +6,7 @@
 <h5>Posted On: <%= dress.posted_at %></h5>
 <img src="<%= dress.photo_url%>" alt="" />
 
-<form action="/dishes/<%= dress.id %>" method="post">
+<form action="/dresses/<%= dress.id %>" method="post">
   <input type="hidden" name="_method" value="DELETE" />
   <button>delete</button>
 </form>

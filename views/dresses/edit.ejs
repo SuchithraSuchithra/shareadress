@@ -1,0 +1,22 @@
+<div>
+  <form action="/dresses/<%= dress.id %>" method="post" class="post-dress-form">
+    <input type="hidden" name="_method" value="PUT" />
+    <div class="post-dress-form-item">
+      <label for="title">Title</label>
+      <input type="text" name="title" value="<%= dress.title %>" />
+    </div>
+    <div class="post-dress-form-item">
+      <label for="price">Price</label>
+      <input type="number" name="price" value="<%= dress.price %>" />
+    </div>
+    <div class="post-dress-form-item">
+      <label for="websiteurl">Website URL</label>
+      <input type="text" name="websiteurl" value="" />
+    </div>
+    <div class="post-dress-form-item">
+      <label for="imageurl">Image URL</label>
+      <input type="text" name="imageurl" value="<%= dress.photo_url %>" />
+    </div>
+    <button>UPDATE</button>
+  </form>
+</div>
