@@ -11,9 +11,16 @@
     <img src="<%= dress.photo_url%>" alt="" />
   </div>
 
-  <form action="/wishlist/<%= dress.id %>" method="post">
-    <button><i class="fa-regular fa-heart"></i></button>
-  </form>
+  <%if (userId) { %>
+  <form action="/wishlist" method="post">
+    <input type="hidden" name="dress_id" value="<%= dress.id %>" />
 
-  <%}%>
+    <%if (wishlistedIds.includes(dress.id)) {%>
+    <p>Inside wishlistId</p>
+    <button><i class="fa-solid fa-heart"></i></button>
+    <%} else {%>
+    <button><i class="fa-regular fa-heart"></i></button>
+    <%}%>
+  </form>
+  <%} %> <%}%>
 </div>

@@ -7,7 +7,12 @@ router.get('/', (req, res) => {
   if (userId) {
     const sql = `SELECT * FROM dress WHERE posted_by IN (SELECT id FROM follow WHERE follower = $1)`
     db.query(sql, [userId], (err, dbRes) => {
-      res.render('home', { dresses: dbRes.rows })
+      // Get wishlisted information
+      const sql = `SELECT dress_id FROM wishlist WHERE user_id=$1`
+      db.query(sql, [userId], (err, wishlistRes) => {
+        const wishlistedIds = wishlistRes.rows.map((item) => item.dress_id)
+        res.render('home', { dresses: dbRes.rows, userId, wishlistedIds })
+      })
     })
   } else {
     const sql = `SELECT * FROM dress`

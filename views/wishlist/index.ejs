@@ -1,0 +1,14 @@
+<h2>Your wishlisted dresses</h2>
+
+<div class="cards">
+  <%for (let dress of dresses) {%>
+
+  <div class="ui-card">
+    <h5>Brand : <%= dress.title %></h5>
+    <h5>Price : <%= dress.price %></h5>
+    <h5>Posted By: <%= dress.posted_by %></h5>
+    <h5>Posted On: <%= dress.posted_at %></h5>
+    <img src="<%= dress.photo_url%>" alt="" />
+  </div>
+  <%}%>
+</div>

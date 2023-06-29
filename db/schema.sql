@@ -30,7 +30,12 @@ CREATE TABLE follow (
     PRIMARY KEY (id, follower)
 );
 
-
+CREATE TABLE wishlist (
+    user_id INTEGER REFERENCES user_account(id),
+    dress_id INTEGER REFERENCES dress(id),
+    added_at date DEFAULT NOW()::timestamp(0),
+    PRIMARY KEY (user_id, dress_id)
+);
 
 
 -- INSERT INTO user_account (first_name, last_name, username, email, photo_url) VALUES ()

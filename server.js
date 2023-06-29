@@ -8,6 +8,7 @@ const dressRouter = require('./routes/dress')
 const followRouter = require('./routes/follow')
 const sessionRouter = require('./routes/session')
 const homeRouter = require('./routes/home')
+const wishlistRouter = require('./routes/wishlist')
 const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 const session = require('express-session')
@@ -56,7 +57,7 @@ app.use('/', homeRouter)
 
 app.use('/dresses', dressRouter)
 app.use('/follow', followRouter)
-
+app.use('/wishlist', wishlistRouter)
 // Server request Listener
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
