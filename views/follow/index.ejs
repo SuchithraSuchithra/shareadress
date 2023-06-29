@@ -1,0 +1,19 @@
+<h2>People you may want to follow</h2>
+
+<div class="cards">
+  <%for (let user of users) {%>
+
+  <div class="ui-card">
+    <h5>Name : <%= user.username %></h5>
+    <h5>Posts :</h5>
+    <h5>Followers :</h5>
+    <img src="<%= user.photo_url%>" alt="" />
+  </div>
+
+  <form action="/follow/<%= user.id %>" method="post">
+    <button>Follow</button>
+  </form>
+
+  <a href="">View Posts</a>
+  <%}%>
+</div>

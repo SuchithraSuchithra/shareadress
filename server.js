@@ -5,6 +5,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const dressRouter = require('./routes/dress')
+const followRouter = require('./routes/follow')
 const sessionRouter = require('./routes/session')
 const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
@@ -52,6 +53,7 @@ app.get('/', (req, res) => {
 
 app.use('/', sessionRouter)
 app.use('/dresses', dressRouter)
+app.use('/follow', followRouter)
 
 // Server request Listener
 app.listen(port, () => {

@@ -29,3 +29,19 @@ CREATE TABLE following (
     followed_by INTEGER REFERENCES user_account(id),
     PRIMARY KEY (id, followed_by)
 );
+
+
+
+
+-- INSERT INTO user_account (first_name, last_name, username, email, photo_url) VALUES ()
+
+
+INSERT INTO user_account (first_name, last_name, username, email, photo_url) VALUES ('Rachel', 'Zoe', 'rachelzoe', 'rachelzoe@gmail.com', 'https://hairstyles.thehairstyler.com/hairstyle_views/front_view_images/13216/original/Rachel-Zoe-long-wavy-hairstyle.jpg');
+
+
+
+INSERT INTO user_account (first_name, last_name, username, email, photo_url) VALUES ('Anna', 'Wintour', 'annawintour', 'annawintour@gmail.com', 'https://upload.wikimedia.org/wikipedia/commons/8/85/Anna_Wintour.jpg')
+
+
+
+
