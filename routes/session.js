@@ -5,7 +5,7 @@ const router = express.Router()
 const db = require('../db/index')
 
 router.get('/login', (req, res) => {
-  res.render('session/login')
+  res.render('session/login', { layout: false })
 })
 
 // session middleware will provide a session object for use req.session
@@ -18,7 +18,7 @@ router.post('/login', (req, res) => {
     // console.log(err)
 
     if (dbRes.rows.length === 0) {
-      res.render('session/login')
+      res.render('session/login', { layout: false })
       return
     }
 
@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
     //   }
     //   if (result) {
     req.session.userId = dbRes.rows[0].id
-    res.redirect('/dresses')
+    res.redirect('/')
     //       } else {
     //         res.render('login')
     //       }

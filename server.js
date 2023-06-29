@@ -7,15 +7,17 @@ const app = express()
 const dressRouter = require('./routes/dress')
 const followRouter = require('./routes/follow')
 const sessionRouter = require('./routes/session')
+const homeRouter = require('./routes/home')
 const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const setUser = require('./middlewares/set_user')
+const authenticate = require('./middlewares/authentication')
 // App setting
 app.set('view engine', 'ejs')
 
 // Global variables
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000
 
 // MIDDLEWARES
 // To fetch the post requrest body
@@ -43,15 +45,15 @@ app.use(
     saveUninitialized: true,
   })
 )
-
+// To set userId from session object
 app.use(setUser)
 
-// Routers
-app.get('/', (req, res) => {
-  res.render('home')
-})
-
 app.use('/', sessionRouter)
+// Authenticate
+app.use(authenticate)
+// Router Middlewares
+app.use('/', homeRouter)
+
 app.use('/dresses', dressRouter)
 app.use('/follow', followRouter)
 

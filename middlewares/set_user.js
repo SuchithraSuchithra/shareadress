@@ -13,9 +13,9 @@ function setUser(req, res, next) {
     if (err) {
       console.log(err)
     } else {
-      console.log('DBResponse', dbRes)
+      // console.log('DBResponse', dbRes)
       res.locals.user = dbRes.rows[0]
-      console.log('The user is', res.locals.user)
+      // console.log('The user is', res.locals.user)
       next()
     }
   })

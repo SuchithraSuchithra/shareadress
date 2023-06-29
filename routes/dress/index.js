@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   const userId = req.session.userId
   const sql = `SELECT * FROM dress WHERE posted_by=$1;`
   db.query(sql, [userId], (err, dbRes) => {
-    console.log(err, dbRes.rows[0])
+    // console.log(err, dbRes.rows[0])
     res.render('dresses/index', { dresses: dbRes.rows })
   })
 })
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
   const dressId = req.params.id
   const sql = `SELECT * FROM dress WHERE id=$1`
   db.query(sql, [dressId], (err, dbRes) => {
-    console.log(err, dbRes.rows)
+    // console.log(err, dbRes.rows)
     res.render('dresses/show', { dress: dbRes.rows[0] })
   })
 })
@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
   const photUrl = req.body.imageurl
   const sql = `INSERT INTO dress (title, price, photo_url, posted_by) VALUES ($1, $2, $3, $4) RETURNING id;`
   db.query(sql, [title, price, photUrl, userId], (err, dbRes) => {
-    console.log(err)
+    // console.log(err)
     const dressId = dbRes.rows[0].id
     res.redirect(`/dresses/${dressId}`)
   })
@@ -58,7 +58,7 @@ router.get('/:id/edit', (req, res) => {
   const dressId = req.params.id
   const sql = `SELECT * FROM dress WHERE id=$1`
   db.query(sql, [dressId], (err, dbRes) => {
-    console.log(err, dbRes.rows)
+    // console.log(err, dbRes.rows)
     res.render('dresses/edit', { dress: dbRes.rows[0] })
   })
   // res.render('dresses/edit')
@@ -66,13 +66,15 @@ router.get('/:id/edit', (req, res) => {
 
 // Modify a post
 router.put('/:id', (req, res) => {
+  const userId = req.session.userId
   const dressId = req.params.id
   const title = req.body.title
   const price = req.body.price
   const photUrl = req.body.imageurl
+  // console.log('PRICEE', price)
   const sql = `UPDATE dress  SET title=$1 , price=$2, photo_url=$3, posted_by=$4 WHERE id=$5;`
-  db.query(sql, [title, price, photUrl, 1, dressId], (err, dbRes) => {
-    console.log(err, dbRes)
+  db.query(sql, [title, price, photUrl, userId, dressId], (err, dbRes) => {
+    // console.log(err, dbRes)
     res.redirect(`/dresses/${dressId}`)
   })
 })
