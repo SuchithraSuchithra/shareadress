@@ -1,4 +1,9 @@
-<p class="page-header">Previous Posts</p>
+
+<% if (dresses.length != 0) {%>
+  <p class="page-header">Previous Posts</p>
+  <% } else {%>
+    <p class="page-header">No Previous Posts!</p>
+  <% }%>
 
 <div class="cards">
   <%for (let dress of dresses) {%>

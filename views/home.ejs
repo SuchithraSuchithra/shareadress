@@ -1,4 +1,8 @@
+<% if (dresses.length != 0) {%>
 <p class="page-header">Timeline</p>
+<% } else {%>
+<p class="page-header">Timeline is empty!</p>
+<% }%>
 
 <div class="cards">
   <%for (let dress of dresses) {%>
