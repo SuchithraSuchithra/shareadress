@@ -7,7 +7,6 @@ const db = require('../../db')
 // Get all users
 router.get('/', (req, res) => {
   const userId = req.session.userId
-  //const sql = `SELECT * FROM dress WHERE id IN (SELECT dress_id FROM wishlist WHERE user_id = $1);`
   const sql = `SELECT d.title, d.price, d.photo_url, d.website_url, u.first_name, u.last_name FROM dress d JOIN user_account u ON d.posted_by = u.id WHERE d.id IN (SELECT dress_id FROM wishlist WHERE user_id = $1);`
   db.query(sql, [userId], (err, dbRes) => {
     console.log(err, dbRes.rows)
