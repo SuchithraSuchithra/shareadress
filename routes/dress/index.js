@@ -35,8 +35,9 @@ router.post('/', (req, res) => {
   const title = req.body.title
   const price = req.body.price
   const photUrl = req.body.imageurl
-  const sql = `INSERT INTO dress (title, price, photo_url, posted_by) VALUES ($1, $2, $3, $4) RETURNING id;`
-  db.query(sql, [title, price, photUrl, userId], (err, dbRes) => {
+  const websiteUrl = req.body.websiteurl
+  const sql = `INSERT INTO dress (title, price, photo_url, posted_by, websit_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;`
+  db.query(sql, [title, price, photUrl, userId, websiteUrl], (err, dbRes) => {
     // console.log(err)
     const dressId = dbRes.rows[0].id
     res.redirect(`/dresses/${dressId}`)
@@ -71,12 +72,17 @@ router.put('/:id', (req, res) => {
   const title = req.body.title
   const price = req.body.price
   const photUrl = req.body.imageurl
+  const websiteUrl = req.body.websiteurl
   // console.log('PRICEE', price)
-  const sql = `UPDATE dress  SET title=$1 , price=$2, photo_url=$3, posted_by=$4 WHERE id=$5;`
-  db.query(sql, [title, price, photUrl, userId, dressId], (err, dbRes) => {
-    // console.log(err, dbRes)
-    res.redirect(`/dresses/${dressId}`)
-  })
+  const sql = `UPDATE dress  SET title=$1 , price=$2, photo_url=$3, posted_by=$4, website_url=$5 WHERE id=$6;`
+  db.query(
+    sql,
+    [title, price, photUrl, userId, websiteUrl, dressId],
+    (err, dbRes) => {
+      // console.log(err, dbRes)
+      res.redirect(`/dresses/${dressId}`)
+    }
+  )
 })
 
 module.exports = router

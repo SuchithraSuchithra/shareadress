@@ -1,23 +1,26 @@
-<a href="/dresses/new">Post a dress</a>
-
-<h2>Your previous posts</h2>
+<p class="page-header">Previous Posts</p>
 
 <div class="cards">
   <%for (let dress of dresses) {%>
 
   <div class="ui-card">
-    <h5>Brand : <%= dress.title %></h5>
-    <h5>Price : <%= dress.price %></h5>
-    <h5>Posted By: <%= dress.posted_by %></h5>
-    <h5>Posted On: <%= dress.posted_at %></h5>
+    <footer class="content">
+      <span><a href="<%= dress.website_url %>"><p class="card-title"><%= dress.title %></p></a></span>
+      <span><p class="card-title"><%= dress.price %>$</p></span>
+    </footer>
     <img src="<%= dress.photo_url%>" alt="" />
+    <footer class="content">
+      <span>
+        <form action="/dresses/<%= dress.id %>" method="post">
+          <input type="hidden" name="_method" value="DELETE" />
+          <button class="delete-button">Delete</button>
+        </form>
+      </span>
+      <span> 
+        <form action="/dresses/<%= dress.id %>/edit">
+          <button class="update-button">Update</button>
+        </form>
+    </footer>
   </div>
-
-  <form action="/dresses/<%= dress.id %>" method="post">
-    <input type="hidden" name="_method" value="DELETE" />
-    <button>delete</button>
-  </form>
-
-  <a href="/dresses/<%= dress.id %>/edit">Update</a>
   <%}%>
 </div>

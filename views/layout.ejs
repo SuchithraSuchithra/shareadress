@@ -18,41 +18,31 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <div></div>
-    <div>
-      <header>
-        <nav class="global-nav">
-          <ul class="list-header">
-            <!-- <li class="list-item">
-              <a class="nav-anchor" href="">Search</a>
-            </li> -->
-            <li class="list-item"><a class="nav-anchor" href="/">Home</a></li>
-            <li class="list-item">
-              <a class="nav-anchor" href="/dresses">Post</a>
-            </li>
-            <li class="list-item">
-              <a class="nav-anchor" href="/follow">Follow</a>
-            </li>
-            <li class="list-item">
-              <a class="nav-anchor" href="/wishlist">Wishlist</a>
-            </li>
-            <li class="list-item"><a class="nav-anchor" href="">Me</a></li>
-          </ul>
-        </nav>
-      </header>
+    <% if (userId) { %>
+    <nav class="navbar">
+      <!-- LOGO -->
+      <div class="logo">SHARE A DRESS</div>
 
-      <% if (userId) { %>
+      <ul class="nav-links">
+        <div class="menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/dresses/new">Post</a></li>
 
-      <p>hi <%= user.first_name %></p>
-
-      <% }%>
-
-      <form action="/logout" method="post">
-        <input type="hidden" name="_method" value="delete" />
-        <button>logout</button>
-      </form>
-      <%- body %>
-    </div>
-    <div></div>
+          <li>
+            <a href="/follow">Follow</a>
+          </li>
+          <li><a href="/wishlist">Wishlist</a></li>
+          <li><a href="/dresses">Me</a></li>
+          <li><a href="/logout">Logout</a></li>
+          <!-- <li>
+            <form action="/logout" method="post">
+              <input type="hidden" name="_method" value="delete" />
+              <button>logout</button>
+            </form>
+          </li> -->
+        </div>
+      </ul>
+    </nav>
+    <%- body %> <% } else {%> <%- body %> <% } %>
   </body>
 </html>

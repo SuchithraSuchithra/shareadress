@@ -1,14 +1,21 @@
-<h2>Your wishlisted dresses</h2>
-
+<p class="page-header">Your Wishlist</p>
 <div class="cards">
   <%for (let dress of dresses) {%>
 
   <div class="ui-card">
-    <h5>Brand : <%= dress.title %></h5>
-    <h5>Price : <%= dress.price %></h5>
-    <h5>Posted By: <%= dress.posted_by %></h5>
-    <h5>Posted On: <%= dress.posted_at %></h5>
+    <footer class="content">
+      <span
+        ><a href="<%= dress.website_url %>"
+          ><p class="card-title"><%= dress.title %></p></a
+        ></span
+      >
+      <span>
+        <p class="card-title"><%= dress.price %>$</p>
+      </span>
+    </footer>
+
     <img src="<%= dress.photo_url%>" alt="" />
+    <p class="card-title"><%= dress.first_name %> <%= dress.last_name %></p>
   </div>
   <%}%>
 </div>

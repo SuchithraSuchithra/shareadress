@@ -1,26 +1,45 @@
-<h2>Timeline</h2>
+<p class="page-header">Timeline</p>
 
 <div class="cards">
   <%for (let dress of dresses) {%>
 
   <div class="ui-card">
-    <h5>Brand : <%= dress.title %></h5>
-    <h5>Price : <%= dress.price %></h5>
-    <h5>Posted By: <%= dress.posted_by %></h5>
-    <h5>Posted On: <%= dress.posted_at %></h5>
+    <footer class="content">
+      <span
+        ><a href="<%= dress.website_url %>"
+          ><p class="card-title"><%= dress.title %></p></a
+        ></span
+      >
+      <span>
+        <p class="card-title"><%= dress.price %>$</p>
+      </span>
+    </footer>
     <img src="<%= dress.photo_url%>" alt="" />
+
+    <footer class="content">
+      <span>
+        <p class="card-title">
+          <%= dress.first_name %> <%= dress.last_name %>
+        </p></span
+      >
+      <span>
+        <%if (userId) { %>
+        <form action="/wishlist" method="post">
+          <input type="hidden" name="dress_id" value="<%= dress.id %>" />
+
+          <%if (wishlistedIds.includes(dress.id)) {%>
+          <button disabled class="wishlist-button">
+            <i class="fa-solid fa-heart"></i>
+          </button>
+          <%} else {%>
+          <button class="wishlist-button">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <%}%>
+        </form>
+        <%} %>
+      </span>
+    </footer>
   </div>
-
-  <%if (userId) { %>
-  <form action="/wishlist" method="post">
-    <input type="hidden" name="dress_id" value="<%= dress.id %>" />
-
-    <%if (wishlistedIds.includes(dress.id)) {%>
-    <p>Inside wishlistId</p>
-    <button><i class="fa-solid fa-heart"></i></button>
-    <%} else {%>
-    <button><i class="fa-regular fa-heart"></i></button>
-    <%}%>
-  </form>
-  <%} %> <%}%>
+  <%}%>
 </div>
