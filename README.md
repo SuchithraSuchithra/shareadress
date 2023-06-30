@@ -4,7 +4,7 @@ A website to share a dress online.
 
 ## Website Link
 
-https://shareadress.onrender.com/wishlist
+https://shareadress.onrender.com
 
 ## Technologies Used
 
@@ -63,6 +63,8 @@ FOLLOW
 
 - Add search by title or user feature
 - Add ranking algorithm
+- Allow users to upload image
+- Add user setting page
 - Add like feature
 - Optimise sql query
 - Add pagination
