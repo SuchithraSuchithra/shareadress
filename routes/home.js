@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   const userId = req.session.userId
   if (userId) {
     // const sql = `SELECT * FROM dress WHERE posted_by IN (SELECT id FROM follow WHERE follower = $1)`
-    const sql = `SELECT d.id, d.title, d.price, d.photo_url, u.first_name, u.last_name FROM dress d JOIN user_account u ON d.posted_by = u.id WHERE d.posted_by IN (SELECT id FROM follow WHERE follower = $1)`
+    const sql = `SELECT d.id, d.title, d.price, d.photo_url,d.website_url, u.first_name, u.last_name FROM dress d JOIN user_account u ON d.posted_by = u.id WHERE d.posted_by IN (SELECT id FROM follow WHERE follower = $1)`
 
     db.query(sql, [userId], (err, dbRes) => {
       console.log('HOME', dbRes)

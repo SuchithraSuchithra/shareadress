@@ -36,9 +36,9 @@ router.post('/', (req, res) => {
   const price = req.body.price
   const photUrl = req.body.imageurl
   const websiteUrl = req.body.websiteurl
-  const sql = `INSERT INTO dress (title, price, photo_url, posted_by, websit_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;`
+  const sql = `INSERT INTO dress (title, price, photo_url, posted_by, website_url) VALUES ($1, $2, $3, $4, $5) RETURNING id;`
   db.query(sql, [title, price, photUrl, userId, websiteUrl], (err, dbRes) => {
-    // console.log(err)
+    console.log(err)
     const dressId = dbRes.rows[0].id
     res.redirect(`/dresses/${dressId}`)
   })

@@ -7,7 +7,7 @@ CREATE TABLE user_account(
     first_name VARCHAR(100),
     last_name VARCHAR(100),
     username VARCHAR(100),
-    password_digest VARCHAR(150),
+    password_digest VARCHAR(350),
     date_joined date DEFAULT NOW()::timestamp(0),
     email VARCHAR(100),
     last_login date,
@@ -20,7 +20,8 @@ CREATE TABLE dress(
     price DECIMAL,
     photo_url VARCHAR(500),
     posted_by  INTEGER REFERENCES user_account(id),
-    posted_at date DEFAULT NOW()::timestamp(0)
+    posted_at date DEFAULT NOW()::timestamp(0),
+    website_url VARCHAR(500)
 );
 
 CREATE TABLE follow (
